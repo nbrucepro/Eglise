@@ -1,21 +1,9 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
-  SettingOutlined,
-  CustomerServiceOutlined,
-  ContainerOutlined,
-  FileSyncOutlined,
   DashboardOutlined,
-  TagOutlined,
-  TagsOutlined,
   UserOutlined,
-  CreditCardOutlined,
-  MenuOutlined,
   FileOutlined,
-  ShopOutlined,
-  FilterOutlined,
-  WalletOutlined,
-  ReconciliationOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 const { Sider } = Layout;
@@ -24,19 +12,14 @@ const Navigation = () => {
   const navigate = useNavigate();  
   const items = [
     {
-      key: "dashboard",
-      icon: <DashboardOutlined />,
-      label: <Link to={"/"}>dashboard</Link>,
-    },
-    {
-      key: "customer",
-      icon: <FileOutlined />,
-      label: <Link to={"/customer"}>customers</Link>,
-    },
-    {
       key: "people",
       icon: <UserOutlined />,
       label: <Link to={"/people"}>peoples</Link>,
+    },
+    {
+      key: "dashboard",
+      icon: <DashboardOutlined />,
+      label: <Link to={"/people"}>dashboard</Link>,
     },
   ];
   return (
@@ -51,10 +34,11 @@ const Navigation = () => {
         borderRadius: "8px",
       }}
       theme={"light"}
+      className="md:block hidden"
     >
       <div
         className="logo"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/people")}
         style={{
           cursor: "pointer",
         }}
@@ -68,7 +52,7 @@ const Navigation = () => {
         style={{
           background: "none",
           border: "none",
-          width: 256,
+          // width: 256,
         }}
       />
     </Sider>

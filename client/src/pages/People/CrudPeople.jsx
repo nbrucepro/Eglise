@@ -4,24 +4,18 @@ import { Button, Modal } from "antd";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getAllMembers } from "../../redux/features/memberslice";
+import { fetchMembers } from "../../redux/features/members.thunk";
+import PageLoader from "../../components/PageLoader";
 
 const CrudPeople = () => {
   const [open, setOpen] = useState(false);
-  const [members, setMembers] = useState([]);
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const [dateValue, setDateValue] = useState();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4000/api/members")
-      .then((response) => {
-        dispatch(getAllMembers(response.data));
-        setMembers(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching members:", error);
-      });
+    dispatch(fetchMembers());
   }, []);
 
   // const handleChange = (event) => {
@@ -63,15 +57,20 @@ const CrudPeople = () => {
   };
 
   const handleSubmit = async (event) => {
+    setLoading(true);
     event.preventDefault();
-    setOpen(false);
+    console.log("d",formData);
     try {
-      console.log(formData);
-      await axios.post('http://localhost:4000/api/members', formData);
+      await axios.post('https://eglise.onrender.com/api/members', formData);
       // Reset form after successful submission
       setFormData({});
+      dispatch(fetchMembers());
+      setLoading(false);
+      setOpen(false);
     } catch (error) {
-      console.error('Error creating member:', error);
+      setLoading(false);
+      console.error("Error creating member:", error);
+      setOpen(false);
     }
   };
   return (
@@ -80,7 +79,7 @@ const CrudPeople = () => {
       <div className="flex justify-evenly">
         {/* <h1>Search</h1> */}
         <Input defaultValue="Search" />
-        <Button type="submit" onClick={() => setOpen(true)}>
+        <Button type="primary" onClick={() => setOpen(true)}>
           Add
         </Button>
       </div>
@@ -89,9 +88,16 @@ const CrudPeople = () => {
         centered
         open={open}
         footer={[
-          <Button type="primary" onClick={(e) => handleSubmit(e)}>
-            Save
-          </Button>,
+          <div>
+            {loading ? (
+              // <Button type="primary">Save</Button>
+              <PageLoader />
+            ) : (
+              <Button type="primary" onClick={(e) => handleSubmit(e)}>
+                Save
+              </Button>
+            )}
+          </div>,
         ]}
         // onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}

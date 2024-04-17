@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import ColumnGroup from "antd/es/table/ColumnGroup";
 import Column from "antd/es/table/Column";
 import moment from "moment/moment";
+import { fetchMembers } from "../../redux/features/members.thunk";
 
 const { Content } = Layout;
 
@@ -12,6 +13,10 @@ const People = () => {
   const { members } = useSelector((state) => state.membersSlice);
   const [dataTable, setDataTable] = useState([]);
   const data = [];
+
+  useEffect(() => {
+    fetchMembers()
+  }, []);
 
   useEffect(() => {
     if (members?.length > 0) {

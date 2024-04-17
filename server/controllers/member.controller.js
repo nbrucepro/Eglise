@@ -14,7 +14,7 @@ async function createMember(data) {
 // READ operation
 async function getMembers() {
   try {
-    const members = await Member.find();
+    const members = await Member.find().sort({ created: -1 });
     return members;
   } catch (error) {
     throw error;

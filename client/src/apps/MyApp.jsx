@@ -11,13 +11,14 @@ const MyApp = () => {
       <Navigation />
       <Layout>
         <Content
-          style={{
-            margin: "40px auto 30px",
-            overflow: "initial",
-            width: "100%",
-            padding: "0 50px",
-            maxWidth: 1400,
-          }}
+          // style={{
+          //   margin: "40px auto 30px",
+          //   overflow: "initial",
+          //   width: "100%",
+          //   padding: "0 50px",
+          //   maxWidth: 1400,
+          // }}
+          className="mt-[40px] mx-auto overflow-initial w-[100%] py-0 md:px-[50px]"
         >
           <Routes>
           <Route element={<People />} path="/people" />
