@@ -58,12 +58,18 @@ const CrudPeople = () => {
 
   const handleSubmit = async (event) => {
     setLoading(true);
-    event.preventDefault();
+    // event.preventDefault();
     console.log("d", formData);
     try {
-      await axios.post("https://eglise.onrender.com/api/members", formData);
+      // await axios.post("https://eglise.onrender.com/api/members", formData);
       // Reset form after successful submission
       setFormData({});
+      setFormData({
+        names: "",
+        father: "",
+        mother: "",
+        id: "",
+      })
       dispatch(fetchMembers());
       setLoading(false);
       setOpen(false);
@@ -87,18 +93,19 @@ const CrudPeople = () => {
         title="ADD PEOPLE"
         centered
         open={open}
-        footer={[
-          <div>
-            {loading ? (
-              // <Button type="primary">Save</Button>
-              <PageLoader />
-            ) : (
-              <Button type="primary" onClick={(e) => handleSubmit(e)}>
-                Save
-              </Button>
-            )}
-          </div>,
-        ]}
+        // footer={[
+        //   <div>
+        //     {loading ? (
+        //       // <Button type="primary">Save</Button>
+        //       <PageLoader />
+        //     ) : (
+        //       <Button type="submit" className="bg-blue-500 text-white" onClick={(e) => handleSubmit(e)}>
+        //         Save
+        //       </Button>
+        //     )}
+        //   </div>,
+        // ]}
+        footer={null}
         // onOk={() => setOpen(false)}
         onCancel={() => setOpen(false)}
         width={700}
@@ -107,6 +114,7 @@ const CrudPeople = () => {
         <form
           style={{ overflow: "hidden", overflowY: "auto", height: "550px" }}
           class="w-full px-4 overflow-hidden overflow-y-auto h-['400px']"
+          onSubmit={(e) => handleSubmit(e)}
         >
           <div class="flex flex-wrap -mx-3 mb-1">
             <div class="w-full md:w-1/2 px-3 mb-1 md:mb-0">
@@ -120,9 +128,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="Muhozi kyaguranyi"
+                placeholder="Muhozi kyaguranyi"
                 name="names"
                 onChange={handleChange}
+                required
               />
               {/* <p class="text-red-500 text-xs italic">Please fill out this field.</p> */}
             </div>
@@ -137,8 +146,9 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-last-name"
                 type="text"
-                defaultValue="Museveni Kaguta"
+                placeholder="Museveni Kaguta"
                 name="father"
+                required
                 onChange={handleChange}
               />
             </div>
@@ -155,9 +165,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="Janet Museveni"
+                placeholder="Janet Museveni"
                 name="mother"
                 onChange={handleChange}
+                required
               />
             </div>
             <div class="w-full md:w-1/2 px-3">
@@ -171,9 +182,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-last-name"
                 type="text"
-                defaultValue="1180029292922558"
+                placeholder="1180029292922558"
                 name="id"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -189,9 +201,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="0788382405"
+                placeholder="0788382405"
                 name="telephone"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -207,9 +220,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-last-name"
                 type="text"
-                defaultValue="Doe"
+                placeholder="Doe"
                 name="redemptionPlace"
                 onChange={handleChange}
+                required
               />
             </div>
             <div class="w-full md:w-1/2 px-3 mb-1 md:mb-0">
@@ -220,6 +234,7 @@ const CrudPeople = () => {
                 Igihe yabatirijwe
               </label>
               <DatePicker
+                required={true}
                 onChange={onDateValueChange}
                 style={{
                   height: "2.8rem",
@@ -244,11 +259,15 @@ const CrudPeople = () => {
               </label>
               <div class="relative">
                 <select
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  class="block cursor-pointer appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                   name="role"
                   onChange={handleChange}
+                  required
                 >
+                  <option value="" disabled selected>
+                    Please Select
+                  </option>
                   <option value="Umukristo">Umukristo</option>
                   <option value="Umudiyakoni">Umudiyakoni</option>
                   <option value="Umuririmbyi">Umuririmbyi</option>
@@ -273,11 +292,15 @@ const CrudPeople = () => {
               </label>
               <div class="relative">
                 <select
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  class="block cursor-pointer appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                   name="zone"
                   onChange={handleChange}
+                  required
                 >
+                  <option value="" disabled selected>
+                    Please Select
+                  </option>
                   <option value="Kimiko">Kimiko</option>
                   <option value="Muhama">Muhama</option>
                   <option value="kiziba">kiziba</option>
@@ -316,9 +339,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="Nord"
+                placeholder="Nord"
                 name="birthPlace.province"
                 onChange={handleChange}
+                required
               />
             </div>
             <div class="w-full md:w-1/2 px-3 mb-1 md:mb-0">
@@ -332,9 +356,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="Gicumbi"
+                placeholder="Gicumbi"
                 name="birthPlace.district"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -350,9 +375,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-last-name"
                 type="text"
-                defaultValue="Rukomo"
+                placeholder="Rukomo"
                 name="birthPlace.sector"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -369,9 +395,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="Nord"
+                placeholder="Nord"
                 name="destinyPlace.province"
                 onChange={handleChange}
+                required
               />
             </div>
             <div class="w-full md:w-1/2 px-3 mb-1 md:mb-0">
@@ -385,9 +412,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="Gicumbi"
+                placeholder="Gicumbi"
                 name="destinyPlace.district"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -403,9 +431,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="Nord"
+                placeholder="Nord"
                 name="destinyPlace.sector"
                 onChange={handleChange}
+                required
               />
             </div>
             <div class="w-full md:w-1/2 px-3 mb-1 md:mb-0">
@@ -419,9 +448,10 @@ const CrudPeople = () => {
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 id="grid-first-name"
                 type="text"
-                defaultValue="Kimiko"
+                placeholder="Kimiko"
                 name="destinyPlace.cell"
                 onChange={handleChange}
+                required
               />
             </div>
           </div>
@@ -435,11 +465,15 @@ const CrudPeople = () => {
               </label>
               <div class="relative">
                 <select
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  class="block cursor-pointer appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                   name="immigrant"
                   onChange={handleChange}
+                  required
                 >
+                  <option value="" disabled selected>
+                    Please Select
+                  </option>
                   <option value="yego">yego</option>
                   <option value="oya">oya</option>
                 </select>
@@ -467,7 +501,11 @@ const CrudPeople = () => {
                   id="grid-state"
                   name="emmigrant"
                   onChange={handleChange}
+                  required
                 >
+                  <option value="" disabled selected>
+                    Please Select
+                  </option>
                   <option value="yego">yego</option>
                   <option value="oya">oya</option>
                 </select>
@@ -493,11 +531,15 @@ const CrudPeople = () => {
               </label>
               <div class="relative">
                 <select
-                  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  class="block cursor-pointer appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
                   name="dead"
                   onChange={handleChange}
+                  required
                 >
+                  <option value="" disabled selected>
+                    Please Select
+                  </option>
                   <option value="oya">oya</option>
                   <option value="yego">yego</option>
                 </select>
@@ -512,6 +554,18 @@ const CrudPeople = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="flex justify-between">
+            <div></div>
+            {loading ? (
+              // <Button type="primary">Save</Button>
+              <PageLoader />
+            ) : (
+              <input
+                type="submit"
+                className="bg-blue-500 cursor-pointer text-white p-2 rounded-md px-4"
+              />
+            )}
           </div>
         </form>
       </Modal>
