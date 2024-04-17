@@ -61,7 +61,7 @@ const CrudPeople = () => {
     event.preventDefault();
     console.log("d", formData);
     try {
-      await axios.post("http://localhost:4000/api/members", formData);
+      await axios.post("https://eglise.onrender.com/api/members", formData);
       // Reset form after successful submission
       setFormData({});
       dispatch(fetchMembers());

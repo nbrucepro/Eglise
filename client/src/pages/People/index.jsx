@@ -60,8 +60,8 @@ const People = () => {
   return (
     <div className="whiteBox shadow layoutPadding">
       <div className="flex justify-between items-center">
-        <div className="flex justify-evenly items-center ">
-        <h1 className="font-bold">People</h1>
+        <div className="flex items-center">
+        <h1 className="font-bold ">ABAKRISTO</h1>
         <Input onChange={handleSearch} placeholder="Search" className="ml-4" />
         </div>
       <CrudPeople />

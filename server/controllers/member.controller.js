@@ -36,8 +36,8 @@ async function updateMember(id, newData) {
 // DELETE operation
 async function deleteMember(id) {
   try {
-    const deletedMember = await Member.deleteMany();
-    // const deletedMember = await Member.findByIdAndDelete(id);
+    // const deletedMember = await Member.deleteMany();
+    const deletedMember = await Member.findByIdAndDelete(id);
     return deletedMember;
   } catch (error) {
     throw error;

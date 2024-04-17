@@ -4,6 +4,7 @@ import {
   DashboardOutlined,
   UserOutlined,
   FileOutlined,
+  AppstoreOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
@@ -12,18 +13,32 @@ const { Sider } = Layout;
 const Navigation = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  
+
+  function getItem(label, key, icon, children, type) {
+    return {
+      key,
+      icon,
+      children,
+      label,
+      type,
+    };
+  }
+
   const items = [
     {
       key: "people",
       icon: <UserOutlined />,
-      label: <Link to={"/people"} onClick={() => setOpen(false)}>peoples</Link>,
+      label: <Link to={"/"} onClick={() => setOpen(false)}>Abakristo bose</Link>,
     },
-    {
-      key: "dashboard",
-      icon: <DashboardOutlined />,
-      label: <Link to={"/people"} onClick={() => setOpen(false)}>dashboard</Link>,
-    },
+    getItem('Chorale', 'sub2', <AppstoreOutlined />, [
+      getItem('Umucyo', '1'),
+      getItem('Emmaus', '2'),
+      getItem('Abayisenga', '3'),
+      getItem('Abahamagawe', '4'),
+      getItem('Elayono', '5'),
+      getItem('Umunezero', '6'),
+      // getItem(<Link to={"/people"} onClick={() => setOpen(false)}>Chorale</Link>, '6'),
+    ]),
   ];
   return (
     <>
@@ -56,12 +71,12 @@ const Navigation = () => {
       >
         <div
           className="logo"
-          onClick={() => navigate("/people")}
+          onClick={() => navigate("/")}
           style={{
             cursor: "pointer",
           }}
         >
-          <h1 style={{ height: "40px" }} className="font-extrabold">CHURCH</h1>
+          <h1 style={{ height: "40px" }} className="font-extrabold">ADEPR CYURU</h1>
         </div>
         <Menu
           items={items}
@@ -84,12 +99,12 @@ const Navigation = () => {
         >
           <div
             className="ml-8"
-            onClick={() => navigate("/people")}
+            onClick={() => navigate("/")}
             style={{
               cursor: "pointer",
             }}
           >
-            <h1 style={{ height: "40px" }} className="font-extrabold">CHURCH</h1>
+            <h1 style={{ height: "40px" }} className="font-extrabold">ADEPR CYURU</h1>
           </div>
           <Menu
             items={items}

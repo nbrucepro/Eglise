@@ -21,7 +21,7 @@ const MyApp = () => {
           className="mt-[40px] mx-auto overflow-initial w-[100%] py-0 md:px-[50px]"
         >
           <Routes>
-          <Route element={<People />} path="/people" />
+          <Route element={<People />} path="/" />
           </Routes>  
         </Content>
       </Layout>
