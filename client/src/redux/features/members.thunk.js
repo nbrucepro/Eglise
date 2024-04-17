@@ -7,7 +7,7 @@ export const fetchMembers = createAsyncThunk(
   async (_, { dispatch }) => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/members"
+        "https://eglise.onrender.com/api/members"
       );
       console.log("response", response.data);
       dispatch(getAllMembers(response.data));
