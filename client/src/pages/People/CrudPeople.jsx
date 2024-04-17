@@ -59,9 +59,9 @@ const CrudPeople = () => {
   const handleSubmit = async (event) => {
     setLoading(true);
     // event.preventDefault();
-    console.log("d", formData);
+    // console.log("d", formData);
     try {
-      // await axios.post("https://eglise.onrender.com/api/members", formData);
+      await axios.post("https://eglise.onrender.com/api/members", formData);
       // Reset form after successful submission
       setFormData({});
       setFormData({
