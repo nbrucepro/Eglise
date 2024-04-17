@@ -62,13 +62,16 @@
       },
     },
     immigrant: {
-      type: Boolean,
+      type: String,
+      trim: true,
     },
     emmigrant: {
-      type: Boolean,
+      type: String,
+      // trim: true,
     },
     dead: {
-      type: Boolean,
+      type: String,
+      trim: true,
     },
     created: {
       type: Date,

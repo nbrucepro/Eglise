@@ -59,9 +59,9 @@ const CrudPeople = () => {
   const handleSubmit = async (event) => {
     setLoading(true);
     event.preventDefault();
-    console.log("d",formData);
+    console.log("d", formData);
     try {
-      await axios.post('https://eglise.onrender.com/api/members', formData);
+      await axios.post("http://localhost:4000/api/members", formData);
       // Reset form after successful submission
       setFormData({});
       dispatch(fetchMembers());
@@ -75,10 +75,10 @@ const CrudPeople = () => {
   };
   return (
     <div className="flex flex-row h-100 justify-between">
-      <h1>People</h1>
+      {/* <h1>People</h1> */}
       <div className="flex justify-evenly">
         {/* <h1>Search</h1> */}
-        <Input defaultValue="Search" />
+        {/* <Input placeholder="Search" /> */}
         <Button type="primary" onClick={() => setOpen(true)}>
           Add
         </Button>
@@ -114,7 +114,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                Names
+                Amazina yombi
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -131,7 +131,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Father's Name
+                Se
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -149,7 +149,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                Mother's Name
+                Nyina
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -165,7 +165,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Id
+                ID
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -201,7 +201,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Redemption Place
+                Aho yabatirijwe
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -217,7 +217,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                Redemption Date
+                Igihe yabatirijwe
               </label>
               <DatePicker
                 onChange={onDateValueChange}
@@ -240,7 +240,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
               >
-                Role
+                Inshingano
               </label>
               <div class="relative">
                 <select
@@ -249,9 +249,9 @@ const CrudPeople = () => {
                   name="role"
                   onChange={handleChange}
                 >
-                  <option value="Diyakoni">Diyakoni</option>
-                  <option value="Umukristu">Umukristu</option>
-                  <option value="Umwana">Umwana</option>
+                  <option value="Umukristo">Umukristo</option>
+                  <option value="Umudiyakoni">Umudiyakoni</option>
+                  <option value="Umuririmbyi">Umuririmbyi</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -269,7 +269,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Zone
+                Itoreroshingiro
               </label>
               <div class="relative">
                 <select
@@ -280,7 +280,16 @@ const CrudPeople = () => {
                 >
                   <option value="Kimiko">Kimiko</option>
                   <option value="Muhama">Muhama</option>
+                  <option value="kiziba">kiziba</option>
+                  <option value="Sabiro">Sabiro</option>
+                  <option value="Nyamutezi">Nyamutezi</option>
+                  <option value="Karengo">Karengo</option>
+                  <option value="kabuga ya cyuru">kabuga ya cyuru</option>
+                  <option value="Bukamba">Bukamba</option>
+                  <option value="kabuga ya Munyinya">kabuga ya Munyinya</option>
                   <option value="Nyankokoma">Nyankokoma</option>
+                  <option value="Munyinya">Munyinya</option>
+                  <option value="Mataba">Mataba</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
@@ -294,13 +303,14 @@ const CrudPeople = () => {
               </div>
             </div>
           </div>
+          <div className="text-lg font-medium -mx-2 my-5">Aho yavukiye</div>
           <div class="flex flex-wrap -mx-3 mb-1">
             <div class="w-full md:w-1/2 px-3 mb-1 md:mb-0">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                Birthplace province
+                Intara
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -316,7 +326,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                Birthplace district
+                Akarere
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -334,7 +344,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                Birthplace sector
+                Umurenge
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -346,13 +356,14 @@ const CrudPeople = () => {
               />
             </div>
           </div>
+          <div className="text-lg font-medium -mx-2 my-5">Aho atuye</div>
           <div class="flex flex-wrap -mx-3 mb-1">
             <div class="w-full md:w-1/2 px-3 mb-1 md:mb-0">
               <label
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                Destiny province
+                Intara
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -368,7 +379,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                destiny district
+                Akarere
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -386,7 +397,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                destiny sector
+                Umurenge
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -402,7 +413,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-first-name"
               >
-                destiny cell
+                Akagari
               </label>
               <input
                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -420,7 +431,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
               >
-                immigrant
+                Uwaturutse ahandi
               </label>
               <div class="relative">
                 <select
@@ -448,7 +459,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-last-name"
               >
-                emmigrant
+                Uwimukiye ahandi
               </label>
               <div class="relative">
                 <select
@@ -478,7 +489,7 @@ const CrudPeople = () => {
                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 for="grid-state"
               >
-                dead
+                Uwitabye Imana
               </label>
               <div class="relative">
                 <select
@@ -487,8 +498,8 @@ const CrudPeople = () => {
                   name="dead"
                   onChange={handleChange}
                 >
-                  <option value="yego">yego</option>
                   <option value="oya">oya</option>
+                  <option value="yego">yego</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                   <svg
